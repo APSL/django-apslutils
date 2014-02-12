@@ -35,3 +35,11 @@ apslutils.fechas
 
 Permite hacer una interación entre dos fechas
 
+
+apslutils.forms
+---------------
+
+**EntreFechasField()**
+
+Campo para formularios. Muestra dos fechas. Fecha desde y fecha hasta.
+

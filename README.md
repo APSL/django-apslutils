@@ -43,3 +43,10 @@ apslutils.forms
 
 Campo para formularios. Muestra dos fechas. Fecha desde y fecha hasta.
 
+**BootstrapMixin()**
+
+Mixin para formularios. Coloca la clase form-control a todos los campos para
+tener compatibilidad con Bootstrap
+
+
+

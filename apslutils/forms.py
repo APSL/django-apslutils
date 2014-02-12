@@ -32,3 +32,22 @@ class EntreFechasField(forms.MultiValueField):
 
     def compress(self, data_list):
         return { 'desde': data_list[0], 'hasta': data_list[1] }
+
+
+class BootstrapMixin(forms.Form):
+    u"""
+    Añade la clase form-control a todos los inputs para compatibilidad
+    con bootstrap    
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(BootstrapMixin, self).__init__(*args, **kwargs)
+
+        for f in self.fields.values():
+            if isinstance(f, forms.BooleanField):
+                continue
+
+            if 'class' in f.widget.attrs:
+                f.widget.attrs['class'] += ' form-control'
+            else:
+                f.widget.attrs['class'] = 'form-control'

@@ -23,6 +23,16 @@ Añadir al fichero de requerimientos en modo desarrollador:
 -e git+https://github.com/APSL/django-apslutils.git#egg=apslutils
 </pre>
 
+Añadir la aplicación al *settings.py*
+
+<pre>
+    INSTALLED_APPS = (
+        ...
+        'apslutils',
+        ...
+    )
+</pre>
+
 Utilidades
 ==========
 
@@ -49,4 +59,16 @@ Mixin para formularios. Coloca la clase form-control a todos los campos para
 tener compatibilidad con Bootstrap
 
 
+apslutils.admin
+---------------
 
+**ComboBoxFiltro()**
+
+Filtro para la administración. Substituye el típico filtro de lista por un
+combobox (select). Útil para FK muy extensos. 
+
+Añadir al *list_filter* con el siguiente formato:
+
+<pre>
+    list_filter = ('campo1', 'campo2', ('campo3', ComboBoxFiltro), )
+</pre>

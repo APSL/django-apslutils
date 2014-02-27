@@ -1,0 +1,35 @@
+{% load i18n %}
+<h3>{{title}}</h3>
+<ul>
+    <li>Desde: <input type="text" id="flt_fechas_desde"  /></li>
+    <li>Hasta: <input type="text" id="flt_fechas_hasta" /></li>
+    <li>
+        <select onchange="window.location=$(this).val() + '|' + $('#flt_fechas_desde').val() + '|' + $('#flt_fechas_hasta').val()">
+            {% for choice in choices %}
+                <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}">{{choice.display}}</option>    
+            {% endfor %}
+        </select>
+    </li>
+</ul>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+
+<script>
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    }
+
+    var tipo_fechas = getURLParameter('flt_fechas');
+    if (tipo_fechas) {
+        tipo_fechas = tipo_fechas.split('|');
+        $('#flt_fechas_desde').val(tipo_fechas[1]);
+        $('#flt_fechas_hasta').val(tipo_fechas[2]);
+    }
+
+    opc = {dateFormat: "dd/mm/yy" };
+    $('#flt_fechas_desde').datepicker(opc);
+    $('#flt_fechas_hasta').datepicker(opc);
+</script>
+

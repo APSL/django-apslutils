@@ -72,3 +72,29 @@ Añadir al *list_filter* con el siguiente formato:
 <pre>
     list_filter = ('campo1', 'campo2', ('campo3', ComboBoxFiltro), )
 </pre>
+
+**RangoFechasFiltro()**
+
+Filtro para fechas desde y hasta. Además se muestra un combo para seleccionar
+sobre qué campo (tipo fecha) queremos aplicar el filtro.
+
+Por ejemplo por si queremos filtrar por fecha desde y hasta de creación, o
+o fecha de recogida.
+
+Uso:
+
+<pre>
+from apslutils.admin import RangoFechasFiltro
+</pre>
+
+Dentro del objeto *ModlAdmin* lo aplicamos.
+
+<pre>
+rfechas = RangoFechasFiltro
+rfechas.filtro_tipos = (
+    ('fecha_reserva', u'Fecha de reserva'),
+    ('fecha_recogida', u'Fecha de recogida'),
+)
+list_filter = ('estado', rfechas, 'asociado', )
+</pre>
+

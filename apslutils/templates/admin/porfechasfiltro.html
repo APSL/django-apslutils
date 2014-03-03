@@ -9,7 +9,7 @@
                 <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}">{{choice.display}}</option>
             {% endfor %}
         </select>
-        <button type="button" onclick="$(this).prev().trigger('change')"><i class="fa fa-repeat"></i></button>
+        <button type="button" style="cursor:pointer;" onclick="$(this).prev().trigger('change')"><i class="fa fa-repeat"></i></button>
     </li>
 </ul>
 

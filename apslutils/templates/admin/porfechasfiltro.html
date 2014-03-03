@@ -6,15 +6,17 @@
     <li>
         <select onchange="window.location=$(this).val() + '|' + $('#flt_fechas_desde').val() + '|' + $('#flt_fechas_hasta').val()">
             {% for choice in choices %}
-                <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}">{{choice.display}}</option>    
+                <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}">{{choice.display}}</option>
             {% endfor %}
         </select>
+        <button type="button" onclick="$(this).prev().trigger('change')"><i class="fa fa-repeat"></i></button>
     </li>
 </ul>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" />
 
 <script>
     function getURLParameter(name) {
@@ -28,8 +30,12 @@
         $('#flt_fechas_hasta').val(tipo_fechas[2]);
     }
 
-    opc = {dateFormat: "dd/mm/yy" };
-    $('#flt_fechas_desde').datepicker(opc);
-    $('#flt_fechas_hasta').datepicker(opc);
+    opc = {dateFormat: "dd/mm/yy", firstDay:1 };
+
+    $(document).ready(function() {
+        $('#flt_fechas_desde, #flt_fechas_hasta').datepicker(opc);
+    });
+    
 </script>
+
 

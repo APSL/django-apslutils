@@ -83,18 +83,23 @@ o fecha de recogida.
 
 Uso:
 
+Importación:
+
 <pre>
 from apslutils.admin import RangoFechasFiltro
 </pre>
 
-Dentro del objeto *ModlAdmin* lo aplicamos.
-
+Creamos un nuevo objeto heredando del filtro
 <pre>
-rfechas = RangoFechasFiltro
-rfechas.filtro_tipos = (
-    ('fecha_reserva', u'Fecha de reserva'),
-    ('fecha_recogida', u'Fecha de recogida'),
-)
-list_filter = ('estado', rfechas, 'asociado', )
+class FiltroReservaOld(RangoFechasFiltro):
+    filtro_tipos = (
+        ('fecha_reserva', u'Fecha de reserva'),
+        ('fecha_recogida', u'Fecha de recogida'),
+    )
+</pre>
+
+Y usamos
+<pre>
+list_filter = ('estado', FiltroReservaOld, 'asociado', )
 </pre>
 

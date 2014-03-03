@@ -44,13 +44,17 @@ class RangoFechasFiltro(admin.SimpleListFilter):
         filtro = request.GET.get(self.parameter_name)
         if filtro:
             desde, hasta = filtro.split('|')[1:]
-            desde = datetime.datetime.strptime(desde, '%d/%m/%Y').date()
-            hasta = datetime.datetime.strptime(hasta, '%d/%m/%Y').date()
-
-            args = {
-                '%s__gte' % self.value(): desde,
-                '%s__lte' % self.value(): hasta
-            }
-            queryset = queryset.filter(**args)
+            
+            try:
+                desde = datetime.datetime.strptime(desde, '%d/%m/%Y').date()
+                hasta = datetime.datetime.strptime(hasta, '%d/%m/%Y').date()
+            except ValueError:
+                pass
+            else:
+                args = {
+                    '%s__gte' % self.value(): desde,
+                    '%s__lte' % self.value(): hasta
+                }
+                queryset = queryset.filter(**args)
 
         return queryset

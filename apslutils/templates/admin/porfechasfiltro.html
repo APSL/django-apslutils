@@ -1,15 +1,15 @@
 {% load i18n %}
 <h3>{{title}}</h3>
-<ul>
-    <li>Desde: <input type="text" id="flt_fechas_desde"  /></li>
-    <li>Hasta: <input type="text" id="flt_fechas_hasta" /></li>
+<ul id="filtro_fechas">
+    <li>{% trans "Desde" %}: <input type="text" id="flt_fechas_desde"  /> <i class="fa fa-calendar"></i></li>
+    <li>{% trans "Hasta" %}: <input type="text" id="flt_fechas_hasta" /> <i class="fa fa-calendar"></i></li>
     <li>
-        <select onchange="window.location=$(this).val() + '|' + $('#flt_fechas_desde').val() + '|' + $('#flt_fechas_hasta').val()">
+        <select>
             {% for choice in choices %}
                 <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}">{{choice.display}}</option>
             {% endfor %}
         </select>
-        <button type="button" style="cursor:pointer;" onclick="$(this).prev().trigger('change')"><i class="fa fa-repeat"></i></button>
+        <button type="button" style="cursor:pointer;"><i class="fa fa-repeat"></i></button>
     </li>
 </ul>
 
@@ -23,17 +23,41 @@
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
     }
 
-    var tipo_fechas = getURLParameter('flt_fechas');
-    if (tipo_fechas) {
-        tipo_fechas = tipo_fechas.split('|');
-        $('#flt_fechas_desde').val(tipo_fechas[1]);
-        $('#flt_fechas_hasta').val(tipo_fechas[2]);
+    function ejecuta_filtro(select) {
+        var url = $(select).val().split('&');
+        var newurl = [];
+        var args = '|' + $('#flt_fechas_desde').val() + '|' + $('#flt_fechas_hasta').val();
+
+        for (var i=0;i<url.length;i++) {
+            var param = url[i];
+
+            if (param.indexOf('flt_fechas') != -1) {
+                param = param + args;
+            }
+
+            newurl.push(param);
+        }
+                
+        window.location=newurl.join('&');
     }
 
-    opc = {dateFormat: "dd/mm/yy", firstDay:1 };
-
     $(document).ready(function() {
-        $('#flt_fechas_desde, #flt_fechas_hasta').datepicker(opc);
+        $('#flt_fechas_desde, #flt_fechas_hasta').datepicker(opc = {
+            dateFormat: "dd/mm/yy", firstDay:1
+        });
+
+        var tipo_fechas = getURLParameter('flt_fechas');
+        if (tipo_fechas) {
+            tipo_fechas = tipo_fechas.split('|');
+            $('#flt_fechas_desde').val(tipo_fechas[1]);
+            $('#flt_fechas_hasta').val(tipo_fechas[2]);
+        }
+    });
+
+    $('#filtro_fechas select').change(function() { ejecuta_filtro(this); });
+
+    $('#filtro_fechas button').click(function() {
+        ejecuta_filtro($('#filtro_fechas select'));
     });
     
 </script>

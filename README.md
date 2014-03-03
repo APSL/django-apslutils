@@ -73,6 +73,11 @@ Añadir al *list_filter* con el siguiente formato:
     list_filter = ('campo1', 'campo2', ('campo3', ComboBoxFiltro), )
 </pre>
 
+**ComboBoxCharFiltro**
+
+Igual que el filtro ComboBoxFiltro pero para campos que no sean de tipo
+ForeignKey. 
+
 **RangoFechasFiltro()**
 
 Filtro para fechas desde y hasta. Además se muestra un combo para seleccionar

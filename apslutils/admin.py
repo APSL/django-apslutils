@@ -15,6 +15,14 @@ class ComboBoxFiltro(admin.RelatedFieldListFilter):
     template = 'admin/combofiltro.html'
 
 
+class ComboBoxCharFiltro(admin.AllValuesFieldListFilter):
+    u"""
+    Parecibo al ComboBoxFiltro, pero este es para campos de tipo CharField.
+    ComboBoxFiltro herea de RelateField... y deben ser campos de tipo FK
+    """
+    template = 'admin/combofiltro.html'
+
+
 class RangoFechasFiltro(admin.SimpleListFilter):
     u"""
     Filtro para rangos de fechas. Además se puede escoger entre distintos

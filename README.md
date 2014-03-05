@@ -108,3 +108,24 @@ Y usamos
 list_filter = ('estado', FiltroReservaOld, 'asociado', )
 </pre>
 
+apslutils.models
+----------------
+
+**subir_archivo(carpeta, fichero)**
+
+Método para ser utilizado en atributos upload_to de fields de tipo ImageField,
+FileField.
+
+Permite una mejora organización de ficheros subidos, guardándolos en carpetas
+por fechas y haciendo slugify del nombre.
+
+En el modelo:
+
+<pre>
+from apslutils.models import subir_archivo
+        
+def img_finca(objeto, filename):
+    return subir_archivo('finca', filename)
+
+imagen = models.ImageField(upload_to=img_finca)
+</pre>

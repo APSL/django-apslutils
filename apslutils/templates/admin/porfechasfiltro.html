@@ -1,10 +1,10 @@
 {% load i18n %}
 <h3>{{title}}</h3>
 <ul id="filtro_fechas">
-    <li>{% trans "Desde" %}: <input type="text" id="flt_fechas_desde"  /> <i class="fa fa-calendar"></i></li>
-    <li>{% trans "Hasta" %}: <input type="text" id="flt_fechas_hasta" /> <i class="fa fa-calendar"></i></li>
+    <li>{% trans "Desde" %}: <input type="text" id="flt_fechas_desde" style="width: 110px;" /> <i class="fa fa-calendar"></i></li>
+    <li>{% trans "Hasta" %}: <input type="text" id="flt_fechas_hasta" style="width: 110px;" /> <i class="fa fa-calendar"></i></li>
     <li>
-        <select>
+        <select style="width: 95%;">
             {% for choice in choices %}
                 <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}">{{choice.display}}</option>
             {% endfor %}
@@ -37,7 +37,7 @@
 
             newurl.push(param);
         }
-                
+
         window.location=newurl.join('&');
     }
 
@@ -59,7 +59,7 @@
     $('#filtro_fechas button').click(function() {
         ejecuta_filtro($('#filtro_fechas select'));
     });
-    
+
 </script>
 
 

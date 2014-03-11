@@ -129,3 +129,18 @@ def img_finca(objeto, filename):
 
 imagen = models.ImageField(upload_to=img_finca)
 </pre>
+
+Templatetags
+============
+
+lista_errores
+-------------
+
+Recibe un formulario, y si no es válido, expulsa una lista de errores
+formatado para Bootstrap 3.
+
+Uso dentro del template:
+<pre>
+    {% load apslutils %}
+    {% lista_errores form %}
+</pre>

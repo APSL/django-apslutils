@@ -144,3 +144,47 @@ Uso dentro del template:
     {% load apslutils %}
     {% lista_errores form %}
 </pre>
+
+Static
+======
+
+En static se encuentran recursos comunes, como pueden ser plugins de jquery
+
+Javascripts
+-----------
+
+jquery.i18nfields
+-----------------
+
+Plugin para modeltranslation. El resultado es parecido al que modeltranslation efectua
+dentro del admin de django, agrupando los campos traducibles en pestañas y
+añadiendo arriba un combo de cambio de idioma general.
+
+Este plugin es compatible con bootstrap3 y se puede añadir en cualquier template donde
+haya un formulario. 
+
+Modo de uso:
+
+<pre>
+    <script src="{{STATIC_URL}}apslutils/js/jquery.i18nfields.js"></script>
+    
+    $(function() {
+        $('form').i18nfields({idioma_defecto: '{{LANGUAGE_CODE}}'});
+    });    
+</pre>
+
+jquery.slugify
+--------------
+
+Plugin para hacer un slugify en tiempo real. Por defecto lo hace del campo nombre
+hacia el slug.
+
+Modo de uso:
+
+<pre>
+    <script src="{{STATIC_URL}}apslutils/js/jquery.slugify.js"></script>
+    
+    $(function() {
+        $('form').slugify();
+    });  
+</pre>

@@ -166,7 +166,7 @@ haya un formulario.
 Modo de uso:
 
 <pre>
-    <script src="{{STATIC_URL}}apslutils/js/jquery.i18nfields.js"></script>
+    Importar script: "{{STATIC_URL}}apslutils/js/jquery.i18nfields.js"
     
     $(function() {
         $('form').i18nfields({idioma_defecto: '{{LANGUAGE_CODE}}'});
@@ -182,7 +182,7 @@ hacia el slug.
 Modo de uso:
 
 <pre>
-    <script src="{{STATIC_URL}}apslutils/js/jquery.slugify.js"></script>
+    Importar script: "{{STATIC_URL}}apslutils/js/jquery.slugify.js"
     
     $(function() {
         $('form').slugify();

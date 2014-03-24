@@ -38,7 +38,7 @@ Modo de uso:
             $(campo).keyup(function() {
                 var valor = $(this).val();
                 var slug = URLify(valor);
-                $('input[name="'+_options.campo_slug+'_'+idioma+'"]').val(slug);
+                $('input[name="'+_options.campo_slug+'_'+idioma+'"]').val(slug).trigger('change');
                 
                 
             });

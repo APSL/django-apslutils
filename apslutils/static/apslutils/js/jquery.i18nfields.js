@@ -63,15 +63,19 @@ Modo de uso:
             $(idiomas).each(function(indx, idioma) {
                 // Li para el selector de idiomas
                 $('<li/>').appendTo(ul).append(
-                    $('<a data-toggle="tab" />').text(idioma).data({'nombre': nombre, 'idioma': idioma})
-                        .prop('href', '#' + nombre + '_' + idioma).click(actualiza_cont_idioma_orig)
+                    $('<a data-toggle="tab" />')
+                        .text(idioma)
+                        .data({'nombre': nombre, 'idioma': idioma})
+                        .prop('href', '#' + nombre + '_' + idioma)
+                        .click(actualiza_cont_idioma_orig)
                 );
 
                 // Recuperamos el label y el input del campo con idioma y le
                 // sustiuimos el label. Por que por defecto es del tipo
                 // "Como llegar [es]"" y lo dejamos en "Como llegar"
                 var label_input = $('#' + nombre + '_' + idioma)
-                                  .closest(_options.selector_contenedor);
+                                  .closest(_options.selector_contenedor)
+                                  .data('nombre', nombre);
                 $(label_input).find('label').text(label);
 
                 // Capa contenedora del tab
@@ -79,6 +83,21 @@ Modo de uso:
                            .prop('id', nombre + '_' + idioma)
                            .html(label_input)
                            .appendTo(div);
+
+                // Si el idioma es igual al idioma por defecto, debemos añadir un evento
+                // que al modificar el input y salir, también modifique el campo base. 
+                // Es decir, si se modifica el campo nombre_es, también debemos modificar
+                // el campo nombre, a secas.
+                if (idioma == _options.idioma_defecto) {
+                    $(label_input).find('input, textarea')
+                                  .data('nombre', nombre)
+                                  .change(function() {
+
+                        var nombre_campo = $(this).data('nombre');
+                        console.log(nombre_campo);
+                        $('#' + nombre_campo).val($(this).val());
+                    });
+                }
             });
 
             // Marcamos los primeros ítems de la navegación y el contenido del

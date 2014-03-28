@@ -32,7 +32,9 @@ class ListaErroresNode(template.Node):
 
         for campo, errores in form.errors.items():
             for error in errores:
-                html_errores.append('<li><strong>%s</strong>: %s</li>' %
+                campo = ('<strong>%s</strong>: ' % campo if campo != '__all__'
+                                                         else '')
+                html_errores.append('<li>%s%s</li>' %
                     (campo, error))
 
         if html_errores:

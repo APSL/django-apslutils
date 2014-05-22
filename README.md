@@ -206,7 +206,7 @@ Paquetes necesarios:
 Vista que junta funcionalidades de django-tables, django-filter y crispy. Modo de uso:
 
 <pre>
-class MiClase(TablaFiltradaView:
+class MiClase(TablaFiltradaView):
 	template_name = "nomre_plantilla"
 	model = MiModelo
 	table_class = MiModeloTable

@@ -188,3 +188,30 @@ Modo de uso:
         $('form').slugify();
     });  
 </pre>
+
+Vistas
+======
+
+En el fichero views.py añadimos distintos tipos de vistas genéricas que se utilizan a menudo.
+
+TablaFiltradaView
+-----------------
+
+Paquetes necesarios:
+
+- django-crispy-forms
+- django-tables2
+- django-filter
+
+Vista que junta funcionalidades de django-tables, django-filter y crispy. Modo de uso:
+
+<pre>
+class MiClase(TablaFiltradaView:
+	template_name = "nomre_plantilla"
+	model = MiModelo
+	table_class = MiModeloTable
+	filter_class = MiModeloFilter
+	formhelper_class = MiHelperDeCrispy
+</pre>
+
+

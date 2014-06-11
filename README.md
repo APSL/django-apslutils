@@ -145,6 +145,17 @@ Uso dentro del template:
     {% lista_errores form %}
 </pre>
 
+mod
+---
+
+Compara el módulo entre dos valores entre cero.
+
+Uso:
+<pre>
+	{% load apslutils %}
+	{% if forloop.counter0|mod: 2 %}{% endif %}
+</pre>
+
 Static
 ======
 

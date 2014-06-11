@@ -49,3 +49,9 @@ class ListaErroresNode(template.Node):
                 }
 
         return html
+
+
+@register.filter
+def mod(num, val):
+    return num % val == 0
+    

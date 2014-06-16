@@ -1,0 +1,17 @@
+{% load crispy_forms_field %}
+<div id="div_id_apellidos" class="form-group {% if has_error %}has-error{% endif %}">
+  <label class="control-label {{label_class}} {% if is_required %}requiredField{% endif %}">
+    {{multifield.label_html}}
+    {% if is_required %}<span class="asteriskField">*</span>{% endif %}
+  </label>
+  <div class="controls {{field_class}}">
+    {% for field in fields_list %}
+    {% crispy_field field %}
+    {% if field.errors %}
+    <span id="error_1_id_{{field.name}}" class="help-block">
+      <strong>{{field.errors.0}}</strong>
+    </span>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>

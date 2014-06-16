@@ -58,6 +58,24 @@ Campo para formularios. Muestra dos fechas. Fecha desde y fecha hasta.
 Mixin para formularios. Coloca la clase form-control a todos los campos para
 tener compatibilidad con Bootstrap
 
+**MultiFieldBootstrap()**
+
+Sólo para django-crispy-forms. Componente del layout para visualizar campos múltiples,
+compatible con Bootstrap3.
+
+Ejemplo:
+
+<pre>
+	helper.layout = Layout(
+		"campo1",
+		"campo2",
+		MultiFieldBootstrap(
+			u"Label del campo",
+			"campo3",
+			"campo4"
+		),
+	)
+</pre>
 
 apslutils.admin
 ---------------
@@ -155,6 +173,12 @@ Uso:
 	{% load apslutils %}
 	{% if forloop.counter0|mod: 2 %}{% endif %}
 </pre>
+
+strtodate
+---------
+
+Transforma fechas del tipo *2014-06-16T12:34:38.874Z* a un obeto datetime.
+
 
 Static
 ======

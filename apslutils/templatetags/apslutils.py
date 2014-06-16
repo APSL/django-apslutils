@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 # --------------------------------------------------------------------------
+import datetime
 
 from django import template
 from django.utils.translation import ugettext as _
@@ -55,3 +56,13 @@ class ListaErroresNode(template.Node):
 def mod(num, val):
     return num % val == 0
     
+
+@register.filter
+def strtodate(fecha_str):
+    u"""
+    Recibe una fecha en formato: 2014-06-16T12:34:38.874Z y
+    devolvemos un objeto datetime
+    """
+    fecha = datetime.datetime.strptime(fecha_str, "%Y-%m-%dT%H:%M:%S.%fZ")
+    return fecha
+

@@ -67,7 +67,7 @@ else:
     class MultiFieldBootstrap(MultiField):
         def __init__(self, label, *fields, **kwargs):
             super(MultiFieldBootstrap, self).__init__(label, *fields, **kwargs)
-            self.template = "apslutils/multifieldbs.html"
+            self.template = "apslutils/crispy/multifieldbs.html"
             
         def render(self, form, form_style, context, template_pack=TEMPLATE_PACK):
             requerido, hay_error = False, False

@@ -63,6 +63,10 @@ def strtodate(fecha_str):
     Recibe una fecha en formato: 2014-06-16T12:34:38.874Z y
     devolvemos un objeto datetime
     """
-    fecha = datetime.datetime.strptime(fecha_str, "%Y-%m-%dT%H:%M:%S.%fZ")
+    try:
+        fecha = datetime.datetime.strptime(fecha_str, "%Y-%m-%dT%H:%M:%S.%fZ")
+    except ValueError:
+        fecha = datetime.datetime.strptime(fecha_str, "%Y-%m-%dT%H:%M:%SZ")
+        
     return fecha
 

@@ -148,6 +148,19 @@ def img_finca(objeto, filename):
 imagen = models.ImageField(upload_to=img_finca)
 </pre>
 
+**traspaso_attrs_i18n(modelo_from, campo_from, modelo_to, campo_to)**
+
+Facilita el trabajo para traspasar atributos de un modelo al otro cuando es un
+campo de traducción.
+
+Ejemplo de uso:
+
+<pre>
+from apslutils.models import traspaso_attrs_i18n
+
+traspaso_attrs_i18n(modelorogien, "nombre", modelodestino, "nombrefull")
+</pre>
+
 Templatetags
 ============
 

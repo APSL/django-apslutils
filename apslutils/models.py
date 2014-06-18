@@ -36,3 +36,18 @@ def subir_archivo(carpeta, fichero):
     nombre, extension = os.path.splitext(fichero)
 
     return os.path.join(uploads, slugify(nombre) + extension)
+
+
+def traspaso_attrs_i18n(modelo_from, campo_from,
+                        modelo_to, campo_to):
+    u"""
+    De un campo origen traspasamos el campo i18n al otro modelo.
+    """
+
+    corig = getattr(modelo_from, campo_from)
+    cdest = setattr(modelo_to, campo_to, corig)
+    
+    for lang in settings.LANGUAGES:
+        corig = getattr(modelo_from, "{}_{}".format(campo_from, lang[0]))
+        setattr(modelo_to, "{}_{}".format(campo_to, lang[0]), corig)
+        

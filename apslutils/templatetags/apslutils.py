@@ -64,6 +64,9 @@ def strtodate(fecha_str):
     devolvemos un objeto datetime
     """
 
+    if not fecha_str:
+        return
+        
     formatos = ["%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%d"]
 
     for formato in formatos:

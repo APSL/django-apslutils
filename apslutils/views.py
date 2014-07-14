@@ -26,7 +26,8 @@ else:
 
             if self.filter_class:
                 self.filter = self.filter_class(self.request.GET, queryset=qs)
-                self.filter.form.helper = self.formhelper_class()
+                self.filter.form.helper = self.formhelper_class() \
+                                          if self.formhelper_class else None
                 return self.filter.qs
 
             return qs

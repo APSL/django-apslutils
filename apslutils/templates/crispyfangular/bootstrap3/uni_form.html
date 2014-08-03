@@ -1,0 +1,10 @@
+{% load crispy_forms_utils %}
+
+{% specialspaceless %}
+{% if form_show_errors %}
+    {% include "crispyfangular/bootstrap3/errors.html" %}
+{% endif %}
+{% for field in form %}
+    {% include "crispyfangular/bootstrap3/field.html" %}
+{% endfor %}
+{% endspecialspaceless %}

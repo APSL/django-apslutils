@@ -262,4 +262,18 @@ class MiClase(TablaFiltradaView):
 	formhelper_class = MiHelperDeCrispy
 </pre>
 
+Templates
+=========
 
+Crispy Forms y AngularJS
+------------------------
+
+En el directorio __templates__ hay la carpeta __crispyfangular__. Contiene plantillas de crispy forms, modificadas para dar soporte a crispy forms y el paquete __django-angular__.
+
+https://github.com/jrief/django-angular
+
+Para utilizar dichas plantillas, colocar en el settings:
+
+<pre>
+CRISPY_TEMPLATE_PACK = 'crispyfangular/bootstrap3'
+</pre>

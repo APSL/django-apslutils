@@ -262,11 +262,10 @@ class MiClase(TablaFiltradaView):
 	formhelper_class = MiHelperDeCrispy
 </pre>
 
-Templates
-=========
+apslutils.views
+---------------
 
-Crispy Forms y AngularJS
-------------------------
+**TablaFiltradaView()**
 
 En el directorio __templates__ hay la carpeta __crispyfangular__. Contiene plantillas de crispy forms, modificadas para dar soporte a crispy forms y el paquete __django-angular__.
 
@@ -276,4 +275,28 @@ Para utilizar dichas plantillas, colocar en el settings:
 
 <pre>
 CRISPY_TEMPLATE_PACK = 'crispyfangular/bootstrap3'
+</pre>
+
+
+**ValidationFormMixin()**
+
+Es un mixin para validar formularios en tiempo real, a través de Ajax. Se añade el mixin a
+nuestro FormView.
+
+<pre>
+class ContactoView(ValidationFormMixin, FormView):
+    pass
+</pre>
+
+Al formulario le tenemos que añadir la clase __validationForm__.
+
+<pre>
+<form class="validationForm" method="" action="">
+...
+</pre>
+
+Y añadir el siguiente javascript a nuestro site.
+
+<pre>
+<script type="text/javascript" src="{{STATIC_URL}}apslutils/js/jquery.validationform.js"></script>
 </pre>

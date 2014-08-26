@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
 # --------------------------------------------------------------------------
+import json
+
+from django import http
+
+from urlparse import parse_qs
+
 
 try:
     import django_filters
@@ -8,8 +14,7 @@ try:
     
     from django_tables2 import SingleTableView, RequestConfig
 except ImportError:
-    class TablaFiltradaView(object):
-        raise Exception(u"Es necesario django-tables2, django-filter y django-crispy-forms")
+    pass
 else:
     class TablaFiltradaView(SingleTableView):
         u"""
@@ -48,3 +53,28 @@ else:
                 ctx["filter"] = self.filter
                 
             return ctx
+
+
+class ValidationFormMixin(object):
+
+    def post(self, request, *args, **kwargs):
+        
+        if "_cleanField" in request.POST:
+            params = request.POST.dict()
+            params = dict([(k, v[0]) for k, v in parse_qs(params["form"]).items()])
+            
+            form_kwargs = {"data": params}
+            form = self.form_class(**form_kwargs)
+            
+            response = {"field_error": True,
+                        "field_description": "",
+                        "form_valid": not bool(form.errors)}
+
+            try:
+                response["field_description"] = form.errors[params["field"]][0]
+            except KeyError:
+                response["field_error"] = False
+
+            return http.HttpResponse(json.dumps(response), content_type="application/json")
+
+        return super(ValidationFormMixin, self).post(request, *args, **kwargs)

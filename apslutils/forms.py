@@ -78,7 +78,7 @@ else:
                 form_campo = form[nombre_campo]
 
                 if isinstance(campo, Field):
-                    form_campo.field.widget.attrs = campo.attrs
+                    form_campo.field.widget.attrs.update(campo.attrs)
                 
                 campos.append(form_campo)
 
@@ -89,3 +89,4 @@ else:
                             "is_required": requerido, "has_error": hay_error})
             
             return render_to_string(self.template, context)
+

@@ -192,6 +192,42 @@ strtodate
 
 Transforma fechas del tipo *2014-06-16T12:34:38.874Z* a un obeto datetime.
 
+metro_form
+----------
+
+Formulario compatibles con Metro UI (http://metroui.org.ua/forms.html).
+
+Uso:
+<pre>
+	{% load apslutils %}
+	{% metro_form form %}
+</pre>
+
+No es necesario añadir el tag form. El tt lo maqueta todo. Para configurar los parámetros del formulario es necesario heredaro del objeto *MetroForm*
+
+
+<pre>
+from apslutils.forms import MetroForm
+
+class MiForm(MetroForm, forms.Form):
+    ...
+
+	metro_action = "login.html"
+	metro_method = "post"
+</pre>
+
+Parámetros disponibles:
+
+*metro_action*
+defecto: "."
+
+*metro_method*
+defecto: "post"
+
+*metro_submit_value*
+defecto: "Submit"
+
+Texto del botón de submit
 
 Static
 ======

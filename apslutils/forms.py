@@ -90,3 +90,23 @@ else:
             
             return render_to_string(self.template, context)
 
+
+class MetroForm(object):
+    u"""
+    Configuración para los formulario que usan Metro UI.
+    """
+
+    # Atributos de configuración por defecto
+    metro_action = "."
+    metro_method = "post"
+    metro_submit_value = u"Submit"
+
+    # Atributos internos
+
+
+    def __init__(self, *args, **kwargs):
+        super(MetroForm, self).__init__(*args, **kwargs)
+
+        
+    
+    

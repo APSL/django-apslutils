@@ -77,3 +77,8 @@ def strtodate(fecha_str):
         else:
             return fecha
         
+
+@register.inclusion_tag("apslutils/metro/form.html")
+def metro_form(form):
+    return {"form": form}
+    

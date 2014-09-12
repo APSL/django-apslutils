@@ -1,0 +1,26 @@
+<form method="{{form.metro_method}}" action="{{form.metro_action}}">{% csrf_token %}
+
+  {% for error in form.non_field_errors %}
+  <div class="fg-red">
+    <i class="icon-warning"></i>
+    {{error}}
+  </div>
+  {% endfor %}
+
+  {% for field in form %}
+  <label>{{field.label}}</label>
+  
+  <div class="input-control {{field.field.widget.input_type}} {% if field.errors %}error-state{% endif %}" data-role="input-control">
+    {{field}}
+    {% for error in field.errors %}<small class="fg-red"><i class="icon-warning"></i> {{error}}</small>{% endfor %}
+
+    {% ifequal field.field.widget.input_type "password" %}
+    <button class="btn-reveal" tabindex="-1" type="button"></button>
+    {% endifequal %}
+
+  </div>
+  {% endfor %}
+
+  <input type="submit" name="" value="{{form.metro_submit_value}}"/>
+</form>
+

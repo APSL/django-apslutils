@@ -100,12 +100,18 @@ class MetroForm(object):
     metro_action = "."
     metro_method = "post"
     metro_submit_value = u"Submit"
+    metro_style = "default"  # Posibles: default | inline
 
     # Atributos internos
 
 
     def __init__(self, *args, **kwargs):
         super(MetroForm, self).__init__(*args, **kwargs)
+
+        # Placeholders...
+        for name, field in self.fields.items():
+            if field.label:
+                field.widget.attrs["placeholder"] = field.label
 
         
     

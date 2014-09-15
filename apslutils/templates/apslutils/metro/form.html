@@ -8,11 +8,15 @@
   {% endfor %}
 
   {% for field in form %}
+
+  {% if form.metro_style != "inline" %}
   <label>{{field.label}}</label>
+  {% endif %}
   
-  <div class="input-control {{field.field.widget.input_type}} {% if field.errors %}error-state{% endif %}" data-role="input-control">
+  <div class="input-control {{field.field.widget.input_type}} {% if field.errors %}error-state{% endif %} {% ifequal form.metro_style "inline" %}size3{% endifequal %}" data-role="input-control">
     {{field}}
-    {% for error in field.errors %}<small class="fg-red"><i class="icon-warning"></i> {{error}}</small>{% endfor %}
+    {% for error in field.errors %}<small class="fg-red"><i class="icon-warning"></i> {{error}}</small>
+    {% endfor %}
 
     {% ifequal field.field.widget.input_type "password" %}
     <button class="btn-reveal" tabindex="-1" type="button"></button>

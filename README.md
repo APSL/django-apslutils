@@ -229,6 +229,13 @@ defecto: "Submit"
 
 Texto del botón de submit
 
+*metro_style*
+defecto: "default"
+valores permitidos: "default", "inline"
+
+Con el estilo *default* el formulario se muestra con un formato vertical, donde el input está situado debajo del label. Con el estilo *inline* el formulario se muestra de forma horizontal.
+
+
 Static
 ======
 

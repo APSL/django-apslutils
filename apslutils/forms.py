@@ -90,6 +90,8 @@ else:
             
             return render_to_string(self.template, context)
 
+####################################
+# Formularios y campos para Metro Ui
 
 class MetroForm(object):
     u"""
@@ -101,6 +103,7 @@ class MetroForm(object):
     metro_method = "post"
     metro_submit_value = u"Submit"
     metro_style = "default"  # Posibles: default | inline
+    metro_show_errors = True
 
     # Atributos internos
 
@@ -108,11 +111,21 @@ class MetroForm(object):
     def __init__(self, *args, **kwargs):
         super(MetroForm, self).__init__(*args, **kwargs)
 
-        # Placeholders...
         for name, field in self.fields.items():
+            field.metro_role = "input-control"
+            
+            if isinstance(field.widget, forms.Select):
+                field.widget.input_type = "select"
+
+            if isinstance(field, forms.DateField):
+                field.metro_role = "datepicker"
+                
             if field.label:
                 field.widget.attrs["placeholder"] = field.label
 
         
-    
+class MetroDateField(forms.DateField):
+    metro_locale = "en"
+    metro_format = "dd/mm/yyyy"
+
     

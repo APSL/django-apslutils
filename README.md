@@ -218,22 +218,41 @@ class MiForm(MetroForm, forms.Form):
 
 Parámetros disponibles:
 
-*metro_action*
+__metro_action__
+
 defecto: "."
 
-*metro_method*
+__metro_method__
+
 defecto: "post"
 
-*metro_submit_value*
+__metro_submit_value__
+
 defecto: "Submit"
 
 Texto del botón de submit
 
-*metro_style*
+__metro_style__
+
 defecto: "default"
 valores permitidos: "default", "inline"
 
 Con el estilo *default* el formulario se muestra con un formato vertical, donde el input está situado debajo del label. Con el estilo *inline* el formulario se muestra de forma horizontal.
+
+__metro_show_errors__
+
+defecto: True
+
+__Fields__
+------
+
+También disponemos de algunos fields para brindar funcionalidades extras:
+
+__MetroDateField__
+
+Atributos:
+- metro_locale
+- metro_format
 
 
 Static

@@ -1,11 +1,17 @@
-<form method="{{form.metro_method}}" action="{{form.metro_action}}">{% csrf_token %}
+<form method="{{form.metro_method}}" action="{{form.metro_action}}">
 
+  {% ifequal form.metro_method "post" %}
+  {% csrf_token %}
+  {% endifequal %}
+
+  {% if form.metro_show_errors %}
   {% for error in form.non_field_errors %}
   <div class="fg-red">
     <i class="icon-warning"></i>
     {{error}}
   </div>
   {% endfor %}
+  {% endif %}
 
   {% for field in form %}
 
@@ -13,13 +19,20 @@
   <label>{{field.label}}</label>
   {% endif %}
   
-  <div class="input-control {{field.field.widget.input_type}} {% if field.errors %}error-state{% endif %} {% ifequal form.metro_style "inline" %}size3{% endifequal %}" data-role="input-control">
+  <div class="input-control {{field.field.widget.input_type}} {% if field.errors and form.metro_show_errors %}error-state{% endif %} {% ifequal form.metro_style "inline" %}size3{% endifequal %}" data-role="{{field.field.metro_role}}" {% ifequal field.field.metro_role "datepicker" %}data-locale="{{field.field.metro_locale}}" data-format="{{field.field.metro_format}}"{% endifequal %}>
     {{field}}
+
+    {% if form.metro_show_errors %}
     {% for error in field.errors %}<small class="fg-red"><i class="icon-warning"></i> {{error}}</small>
     {% endfor %}
+    {% endif %}
 
     {% ifequal field.field.widget.input_type "password" %}
     <button class="btn-reveal" tabindex="-1" type="button"></button>
+    {% endifequal %}
+
+    {% ifequal field.field.metro_role "datepicker" %} 
+    <button class="btn-date"></button>
     {% endifequal %}
 
   </div>

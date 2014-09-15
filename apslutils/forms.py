@@ -117,6 +117,9 @@ class MetroForm(object):
             if isinstance(field.widget, forms.Select):
                 field.widget.input_type = "select"
 
+            if isinstance(field.widget, forms.CheckboxInput):
+                field.widget.input_type = "checkbox"
+
             if isinstance(field, forms.DateField):
                 field.metro_role = "datepicker"
                 

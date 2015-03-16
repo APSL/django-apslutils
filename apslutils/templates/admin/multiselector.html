@@ -1,0 +1,66 @@
+{% load i18n staticfiles %}
+
+<h3>{{title}}</h3>
+<li>
+  <ul>
+    <select id="filtro_multiselector" title="{% trans 'Filtrar' %} {{ title|lower }}" multiple="multiple"
+            name="{{ spec.parameter_name }}" size="10" style="width: 110px;">
+      {% for choice in choices|slice:"1:" %}
+        <option {% if choice.selected %}selected="selected"{% endif %} value="{{ choice.query_string|iriencode }}">{{choice.display}}</option>
+      {% endfor %}
+    </select>
+  </ul>
+
+</li>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.multiselect.css' %}" />
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{% static 'js/jquery.multiselect.min.js' %}"></script>
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    /* Inicialitzacio del multiselector */
+    var selector = $("#filtro_multiselector").multiselect({
+      minWidth: 120,
+      checkAllText: "{% trans 'Marca todo' %}",
+      uncheckAllText: "{% trans 'Desmarca todo' %}",
+      noneSelectedText: "{% trans 'Seleccione opciones' %}",
+      click: function (event, ui) {
+        exec_filter(selector);
+      },
+      checkAll: function() {
+        exec_filter(selector);
+      },
+      uncheckAll: function(){
+        exec_filter(selector);
+      },
+      selectedText: function (numChecked, numTotal, checkedItems) {
+        return numChecked + " {% trans 'de' %} " + numTotal + " {% trans 'seleccionados' %}";
+      }
+    });
+  });
+
+
+  function exec_filter(select) {
+    select.multiselect("close");
+    var checked_values = select.multiselect("getChecked").map(function () {
+      return this.value;
+    }).get();
+
+    var regexp = new RegExp("{{ spec.parameter_name }}=(.*)&?");
+    var base_url = select.find('option').first().val().replace(regexp, "");
+    var args = [];
+    for (var i=0; i<checked_values.length; i++) {
+      var value = checked_values[i].match(regexp);
+      if (value.length > 0) {
+        args.push(value[1]);
+      }
+    }
+
+    var url = base_url + (args.length > 0 ? "{{ spec.parameter_name }}=" + args.join("|") : "");
+    window.location = url;
+  }
+
+</script>

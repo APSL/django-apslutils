@@ -126,6 +126,40 @@ Y usamos
 list_filter = ('estado', FiltroReservaOld, 'asociado', )
 </pre>
 
+**MultiSelectorFiltro**
+
+Filtro multiselector configurable a partir de los atributos del modelo.
+Cada opcion del selector se compone por:
+ * value: propiedad del modelo especificado en 'filter_by'
+ * texto: propiedad del modelo espicificado en 'parameter_name'
+
+Por ejemplo, si queremos filtrar por el atributo 'codigo' y que los elementos del selector
+muestre el atributo 'nombre' del modelo, se sobreescriben las siguientes variable:
+ <pre>
+  filter_by = 'codigo'
+  parameter_name = 'nombre'
+ </pre>
+
+Uso:
+
+Importación:
+
+<pre>
+from apslutils.admin import MultiSelectorFiltro
+</pre>
+
+Creamos un nuevo objeto heredando del filtro
+<pre>
+class MiFiltroMultiselector(MultiSelectorFiltro):
+    filter_by = 'codigo'
+    parameter_name = 'nombre'
+</pre>
+
+Y usamos
+<pre>
+list_filter = (MiFiltroMultiselector, 'atributo1', 'atributo2', )
+</pre>
+
 apslutils.models
 ----------------
 

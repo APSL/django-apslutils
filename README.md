@@ -129,12 +129,12 @@ list_filter = ('estado', FiltroReservaOld, 'asociado', )
 **MultiSelectorFiltro**
 
 Filtro multiselector configurable a partir de los atributos del modelo.
-Cada opcion del selector se compone por:
- * value: propiedad del modelo especificado en 'filter_by'
- * texto: propiedad del modelo espicificado en 'parameter_name'
+Cada opción del selector se compone por:
+ * *value*: propiedad del modelo especificado en '*filter_by*'
+ * *texto*: propiedad del modelo espicificado en '*parameter_name*'
 
-Por ejemplo, si queremos filtrar por el atributo 'codigo' y que los elementos del selector
-muestre el atributo 'nombre' del modelo, se sobreescriben las siguientes variable:
+Por ejemplo, si queremos filtrar por el atributo '*codigo*' y que los elementos del selector
+muestren el valor del atributo 'nombre' del modelo, se sobreescriben las siguientes variable:
  <pre>
   filter_by = 'codigo'
   parameter_name = 'nombre'

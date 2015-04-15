@@ -62,7 +62,8 @@ Modo de uso:
             // y un div para su contenido
             $(idiomas).each(function(indx, idioma) {
                 // Li para el selector de idiomas
-                $('<li/>').appendTo(ul).append(
+                $('<li/>').prop('id', 'tab_' + nombre + '_' + idioma)
+                    .appendTo(ul).append(
                     $('<a data-toggle="tab" />')
                         .text(idioma)
                         .data({'nombre': nombre, 'idioma': idioma})
@@ -100,10 +101,9 @@ Modo de uso:
                 }
             });
 
-            // Marcamos los primeros ítems de la navegación y el contenido del
-            // tab
-            $(ul).find('li:first').addClass('active');
-            $(div).find('div:first').addClass('active');
+            // Marcamos los ítems de la navegación y el contenido del tab del idioma por defecto
+            $(ul).find('li#tab_' + nombre + '_' + _options.idioma_defecto).addClass('active');
+            $(div).find('div#' + nombre + '_' + _options.idioma_defecto).addClass('active');
         });
     }
 

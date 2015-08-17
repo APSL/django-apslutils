@@ -1,1 +1,2 @@
 recursive-include apslutils/templates *
+recursive-include apslutils/static *
